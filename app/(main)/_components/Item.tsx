@@ -175,6 +175,7 @@ export const Item = ({
             >
               <DropdownMenuItem onClick={onArchive}>
                 <Trash className="h-4 w-4 mr-2" />
+                Delete
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <p className="text-sm text-muted-foreground p-2">
