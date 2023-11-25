@@ -1,9 +1,10 @@
+// Importing necessary modules and components
 "use client";
 
 // External libraries
-import { useMutation } from "convex/react";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { useMutation } from "convex/react";  // Importing Convex useMutation hook
+import { useRouter } from "next/navigation";  // Importing Next.js useRouter hook
+import { toast } from "sonner";  // Importing Sonner toast for notifications
 
 // External icons
 import {
@@ -13,26 +14,27 @@ import {
   MoreHorizontal,
   Plus,
   Trash,
-} from "lucide-react";
+} from "lucide-react";  // Importing Lucide icons
 
 // Internal modules
-import { Id } from "@/convex/_generated/dataModel";
-import { cn } from "@/lib/utils";
+import { Id } from "@/convex/_generated/dataModel";  // Importing Convex dataModel
+import { cn } from "@/lib/utils";  // Importing utility function
 
 // Internal components
-import { Skeleton } from "@/components/ui/skeleton";
-import { api } from "@/convex/_generated/api";
+import { Skeleton } from "@/components/ui/skeleton";  // Importing Skeleton component
+import { api } from "@/convex/_generated/api";  // Importing Convex API
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";  // Importing DropdownMenu components
 
 // External hooks
-import { useUser } from "@clerk/clerk-react";
+import { useUser } from "@clerk/clerk-react";  // Importing useUser hook from Clerk
 
+// Defining the ItemProps interface
 interface ItemProps {
   active?: boolean;
   documentIcon?: string;
@@ -46,6 +48,7 @@ interface ItemProps {
   onClick?: () => void;
 }
 
+// Defining the Item component
 export const Item = ({
   id,
   label,
@@ -58,9 +61,14 @@ export const Item = ({
   onExpand,
   expanded,
 }: ItemProps) => {
+  // Using Next.js useRouter hook
   const router = useRouter();
+
+  // Using Convex useMutation hook for document creation and archiving
   const create = useMutation(api.documents.create);
   const archive = useMutation(api.documents.archive);
+
+  // Using Clerk useUser hook
   const { user } = useUser();
 
   // Define a function to handle the creation of a new document
@@ -78,8 +86,8 @@ export const Item = ({
         if (!expanded) {
           onExpand?.();
         }
-        // TODO: Uncomment the line below to navigate to the newly created document using a router
-        // router.push(`/documents/${documentId}`);
+
+        router.push(`/documents/${documentId}`);
       }
     );
 
@@ -100,7 +108,7 @@ export const Item = ({
     if (!id) return;
 
     // Archive the note by calling the 'archive' function with the specified document ID
-    const promise = archive({ id });
+    const promise = archive({ id }).then(() => router.push("/documents"));
 
     // Display a toast notification based on the promise result
     toast.promise(promise, {
@@ -123,6 +131,7 @@ export const Item = ({
 
   const ChevronIcon = expanded ? ChevronDown : ChevronRight;
 
+  // Rendering the Item component JSX
   return (
     <div
       onClick={onClick}
@@ -147,7 +156,7 @@ export const Item = ({
       {documentIcon ? (
         <div className="shrink-0 mr-2 text-[18px]">{documentIcon}</div>
       ) : (
-        <Icon className="shrink-0 h-[18px] mr-2 text-muted-foreground" />
+        <Icon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />
       )}
       <span className="truncate">{label}</span>
       {isSearch && (
@@ -198,6 +207,7 @@ export const Item = ({
   );
 };
 
+// Adding Skeleton functionality to the Item component
 Item.Skeleton = function ItemSkeleton({ level }: { level?: number }) {
   return (
     <div

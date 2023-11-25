@@ -1,30 +1,44 @@
+// Importing necessary modules and components
 "use client";
+
+// Style and utility imports
 import { cn } from "@/lib/utils";
+import Logo from "./Logo";
+import Link from "next/link";
+
+// Authentication-related imports
 import { SignInButton, SignUpButton, UserButton } from "@clerk/clerk-react";
 import { useConvexAuth } from "convex/react";
 
-import Logo from "./Logo";
+// Custom hooks and components imports
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import { ModeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/spinner";
-import Link from "next/link";
 
+
+// Defining the Navbar component
 function Navbar() {
-  const scrolled = useScrollTop();
-  const { isAuthenticated, isLoading } = useConvexAuth();
+  // Using custom hooks and authentication hook from Convex
+  const scrolled = useScrollTop(); // Tracking the scroll position
+  const { isAuthenticated, isLoading } = useConvexAuth(); // Checking authentication status and loading state
+
+  // Returning the JSX for the Navbar component
   return (
     <div
+      // Applying dynamic classNames based on scroll position and theme
       className={cn(
         "z-50 bg-background dark:bg-[#1F1F1F] fixed top-0 flex items-center w-full p-6",
         scrolled &&
           "border-b border-gray-300 shadow-md transition ease-linear duration-200"
       )}
     >
-      <Logo />
+      <Logo /> {/* Rendering the Logo component */}
       <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2 dark:text-white">
-        {isLoading && <Spinner />}
+        {isLoading && <Spinner />}{" "}
+        {/* Showing a spinner while authentication is in progress */}
         {!isAuthenticated && !isLoading && (
+          // Displaying Sign In and Sign Up buttons if not authenticated
           <>
             <SignInButton mode="modal">
               <Button variant="ghost" size="sm">
@@ -32,11 +46,12 @@ function Navbar() {
               </Button>
             </SignInButton>
             <SignUpButton mode="modal">
-              <Button size="sm"> Get Your Nirvana Free</Button>
+              <Button size="sm">Find Your Nirvana</Button>
             </SignUpButton>
           </>
         )}
         {isAuthenticated && !isLoading && (
+          // Displaying Home and UserButton components if authenticated
           <>
             <Button variant="ghost" size="sm" asChild>
               <Link href="/documents">Home</Link>
@@ -44,10 +59,10 @@ function Navbar() {
             <UserButton afterSignOutUrl="/" />
           </>
         )}
-        <ModeToggle />
+        <ModeToggle /> {/* Rendering the theme toggle component */}
       </div>
     </div>
   );
 }
 
-export default Navbar;
+export default Navbar; // Exporting the Navbar component as the default export

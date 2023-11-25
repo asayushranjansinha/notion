@@ -1,33 +1,46 @@
-"use client";
+// React and Next.js
+import { useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 
-import { ConfirmModal } from "@/components/modals/ConfirmModal";
-import { Spinner } from "@/components/spinner";
-import { Input } from "@/components/ui/input";
+// Convex
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useMutation, useQuery } from "convex/react";
-import { Search, Trash, Undo } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
-import { toast } from "sonner";
 
+// Lucide Icons
+import { Search, Trash, Undo } from "lucide-react";
+
+// Sonner (Toast library) and UI Components
+import { toast } from "sonner";
+import { ConfirmModal } from "@/components/modals/ConfirmModal";
+import { Spinner } from "@/components/spinner";
+import { Input } from "@/components/ui/input";
+
+// TrashBox component definition
 function TrashBox() {
+  // Next.js router and params
   const router = useRouter();
   const params = useParams();
+
+  // Convex queries and mutations
   const documents = useQuery(api.documents.getTrash);
   const restore = useMutation(api.documents.restore);
   const remove = useMutation(api.documents.remove);
 
+  // Local state for search functionality
   const [search, setSearch] = useState("");
 
+  // Filter documents based on search input
   const filteredDocuments = documents?.filter((document) => {
     return document.title.toLowerCase().includes(search.toLowerCase());
   });
 
+  // Event handler to navigate to a document
   const onClick = (documentId: string) => {
-    // router.push(`/documents${documentId}`)
+    router.push(`/documents/${documentId}`);
   };
 
+  // Event handler to restore a document
   const onRestore = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     documentId: Id<"documents">
@@ -37,9 +50,11 @@ function TrashBox() {
     toast.promise(promise, {
       loading: "Restoring note",
       success: "Note Restored",
-      error: "Failed to retore",
+      error: "Failed to restore",
     });
   };
+
+  // Event handler to remove a document
   const onRemove = (documentId: Id<"documents">) => {
     const promise = remove({ id: documentId });
     toast.promise(promise, {
@@ -48,11 +63,13 @@ function TrashBox() {
       error: "Failed to Delete",
     });
 
+    // Redirect to documents page if the currently viewed document is deleted
     if (params.documentId === documentId) {
       router.push("/documents");
     }
   };
 
+  // JSX for rendering the TrashBox component
   if (documents === undefined) {
     return (
       <div className="h-full flex items-center justify-center p-4">
@@ -66,7 +83,7 @@ function TrashBox() {
         <Search className="h-4 w-4" />
         <Input
           value={search}
-          onChange={(event) => event.target.value}
+          onChange={(event) => setSearch(event.target.value)}
           className="h-7 px-2 focus-visible:ring-transparent bg-secondary"
           placeholder="Filter by page title..."
         />

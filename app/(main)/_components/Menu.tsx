@@ -1,38 +1,63 @@
+// Importing necessary modules and components
 "use client";
-import { Id } from "@/convex/_generated/dataModel";
+
+// Convex-related imports
+import { Id } from "@/convex/_generated/dataModel";  // Importing Convex dataModel
+import { useMutation } from "convex/react";  // Importing Convex useMutation hook
+import { api } from "@/convex/_generated/api";  // Importing Convex API
+
+// Next.js-related imports
+import { useRouter } from "next/navigation";  // Importing Next.js useRouter hook
+
+// Clerk-related imports
+import { useUser } from "@clerk/clerk-react";  // Importing useUser hook from Clerk
+
+// UI components and utility imports
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
-import { useRouter } from "next/navigation";
-import { useUser } from "@clerk/clerk-react";
-import { useMutation } from "convex/react";
-import { api } from "@/convex/_generated/api";
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { MoreHorizontal, Trash } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
+} from "@/components/ui/dropdown-menu";  // Importing DropdownMenu components
+import { toast } from "sonner";  // Importing Sonner toast for notifications
+import { Button } from "@/components/ui/button";  // Importing Button component
+import { MoreHorizontal, Trash } from "lucide-react";  // Importing Lucide icons
+import { Skeleton } from "@/components/ui/skeleton";  // Importing Skeleton component
 
+// Defining the MenuProps interface
 interface MenuProps {
   documentId: Id<"documents">;
 }
+
+// Defining the Menu component
 export const Menu = ({ documentId }: MenuProps) => {
+  // Using Next.js useRouter hook
   const router = useRouter();
+
+  // Using Clerk useUser hook
   const { user } = useUser();
+
+  // Using Convex useMutation hook for document archiving
   const archive = useMutation(api.documents.archive);
 
+  // Define a function to handle the archiving of a document
   const onArchive = () => {
+    // Archive the document by calling the 'archive' function with the specified document ID
     const promise = archive({ id: documentId });
+
+    // Display a toast notification based on the promise result
     toast.promise(promise, {
-      loading: "Moving to trash...",
-      success: "Moved to trash!",
-      error: "Failed to move",
+      loading: "Moving to trash...", // Display loading message during the archiving process
+      success: "Moved to trash!", // Display success message when the document is successfully archived
+      error: "Failed to move", // Display error message if archiving fails
     });
+
+    // Redirect to the documents page after archiving
     router.push("/documents");
   };
+
+  // Rendering the Menu component JSX
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -52,13 +77,14 @@ export const Menu = ({ documentId }: MenuProps) => {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <div className="text-xm text-muted-foreground p-2">
-          Last edited by:{user?.fullName}
+          Last edited by: {user?.fullName}
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 };
 
+// Adding Skeleton functionality to the Menu component
 Menu.Skeleton = function MenuSkeleton() {
   return <Skeleton className="h-10 w-10"></Skeleton>;
 };
