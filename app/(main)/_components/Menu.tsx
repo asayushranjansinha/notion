@@ -2,15 +2,15 @@
 "use client";
 
 // Convex-related imports
-import { Id } from "@/convex/_generated/dataModel";  // Importing Convex dataModel
-import { useMutation } from "convex/react";  // Importing Convex useMutation hook
-import { api } from "@/convex/_generated/api";  // Importing Convex API
+import { Id } from "@/convex/_generated/dataModel"; // Importing Convex dataModel
+import { useMutation } from "convex/react"; // Importing Convex useMutation hook
+import { api } from "@/convex/_generated/api"; // Importing Convex API
 
 // Next.js-related imports
-import { useRouter } from "next/navigation";  // Importing Next.js useRouter hook
+import { useRouter } from "next/navigation"; // Importing Next.js useRouter hook
 
 // Clerk-related imports
-import { useUser } from "@clerk/clerk-react";  // Importing useUser hook from Clerk
+import { useUser } from "@clerk/clerk-react"; // Importing useUser hook from Clerk
 
 // UI components and utility imports
 import {
@@ -19,11 +19,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";  // Importing DropdownMenu components
-import { toast } from "sonner";  // Importing Sonner toast for notifications
-import { Button } from "@/components/ui/button";  // Importing Button component
-import { MoreHorizontal, Trash } from "lucide-react";  // Importing Lucide icons
-import { Skeleton } from "@/components/ui/skeleton";  // Importing Skeleton component
+} from "@/components/ui/dropdown-menu"; // Importing DropdownMenu components
+import { toast } from "sonner"; // Importing Sonner toast for notifications
+import { Button } from "@/components/ui/button"; // Importing Button component
+import { MoreHorizontal, Trash } from "lucide-react"; // Importing Lucide icons
+import { Skeleton } from "@/components/ui/skeleton"; // Importing Skeleton component
 
 // Defining the MenuProps interface
 interface MenuProps {

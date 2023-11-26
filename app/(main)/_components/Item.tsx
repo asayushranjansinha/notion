@@ -108,7 +108,7 @@ export const Item = ({
     if (!id) return;
 
     // Archive the note by calling the 'archive' function with the specified document ID
-    const promise = archive({ id }).then(() => router.push("/documents"));
+    const promise = archive({ id });
 
     // Display a toast notification based on the promise result
     toast.promise(promise, {
@@ -116,6 +116,8 @@ export const Item = ({
       success: "Note moved to trash!", // Display success message when the note is successfully archived
       error: "Failed to archive note.", // Display error message if archiving fails
     });
+    // Redirect to the documents page after archiving
+    router.push("/documents");
   };
 
   // Define a function to handle the expansion of a document
@@ -147,7 +149,7 @@ export const Item = ({
       {!!id && (
         <div
           role="button"
-          className="h-full rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 mr-1"
+          className="h-full rounded-sm hover:bg-neutral-300 dark:hover:bg-primary-foreground mr-1"
           onClick={handleExpand}
         >
           <ChevronIcon className="h-4 w-4 shrink-0 text-muted-foreground/50" />
@@ -171,7 +173,7 @@ export const Item = ({
             <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
               <div
                 role="button"
-                className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
+                className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-primary-foreground"
               >
                 <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
               </div>
@@ -197,7 +199,7 @@ export const Item = ({
           <div
             role="button"
             onClick={onCreate}
-            className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
+            className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-primary-foreground"
           >
             <Plus className="h-4 w-4 text-muted-foreground" />
           </div>

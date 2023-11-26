@@ -2,21 +2,21 @@
 "use client";
 
 // Convex-related imports
-import { api } from "@/convex/_generated/api";  // Importing Convex API
-import { useQuery } from "convex/react";  // Importing Convex useQuery hook
-import { Id } from "@/convex/_generated/dataModel";  // Importing Convex dataModel
+import { api } from "@/convex/_generated/api"; // Importing Convex API
+import { Id } from "@/convex/_generated/dataModel"; // Importing Convex dataModel
+import { useQuery } from "convex/react"; // Importing Convex useQuery hook
 
 // Next.js-related imports
-import { useParams } from "next/navigation";  // Importing Next.js useParams hook
+import { useParams } from "next/navigation"; // Importing Next.js useParams hook
 
 // Lucide-react icons
-import { MenuIcon } from "lucide-react";  // Importing Lucide MenuIcon
+import { MenuIcon } from "lucide-react"; // Importing Lucide MenuIcon
 
 // Internal components
-import { Title } from "./Title";  // Importing internal Title component
-import { Banner } from "./Banner";  // Importing internal Banner component
-import { Menu } from "./Menu";  // Importing internal Menu component
-import Publish from "./Publish";  // Importing internal Publish component
+import { Banner } from "./Banner"; // Importing internal Banner component
+import { Menu } from "./Menu"; // Importing internal Menu component
+import Publish from "./Publish"; // Importing internal Publish component
+import { Title } from "./Title"; // Importing internal Title component
 
 // Defining the NavbarProps interface
 interface NavbarProps {
@@ -71,9 +71,7 @@ function Navbar({ isCollapsed, onResetWidth }: NavbarProps) {
 
           <div className="flex items-center gap-x-2">
             {/* Publish component for document publishing */}
-            <Publish
-              initialData={document}
-            />
+            <Publish initialData={document} />
             {/* Menu component for additional actions */}
             <Menu documentId={document._id} />
           </div>
@@ -81,9 +79,7 @@ function Navbar({ isCollapsed, onResetWidth }: NavbarProps) {
       </nav>
 
       {/* Displaying Banner component if document is archived */}
-      {document?.isArchived && (
-        <Banner documentId={document._id} />
-      )}
+      {document?.isArchived && <Banner documentId={document._id} />}
     </>
   );
 }

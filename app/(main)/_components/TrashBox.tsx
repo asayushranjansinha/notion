@@ -88,7 +88,7 @@ function TrashBox() {
           placeholder="Filter by page title..."
         />
       </div>
-      <div className="px-1 pb-1 mt-2">
+      <div className="px-1 pb-1 mt-2 max-h-80 overflow-y-auto">
         <p className="hidden last:block text-xs text-muted-foreground pb-2">
           No documents found.
         </p>
@@ -104,13 +104,13 @@ function TrashBox() {
               <div
                 onClick={(event) => onRestore(event, document._id)}
                 role="button"
-                className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-secondary"
               >
                 <Undo className="h-4 w-4 text-muted-foreground" />
               </div>
               <ConfirmModal onConfirm={() => onRemove(document._id)}>
                 <div
-                  className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600"
+                  className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-secondary"
                   role="button"
                 >
                   <Trash className="h-4 w-4 text-muted-foreground" />
