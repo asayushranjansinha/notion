@@ -21,13 +21,14 @@ interface DocumentIdPageProps {
   };
 }
 
-// Dynamic import of the Editor component to enable client-side rendering
-const Editor = useMemo(() => dynamic(() => import("@/components/Editor"), { ssr: false }), []);
-
 // DocumentIdPage component definition
-const DocumentIdPage = ({
-  params,
-}: DocumentIdPageProps) => {
+const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
+  // Dynamic import of the Editor component to enable client-side rendering
+  const Editor = useMemo(
+    () => dynamic(() => import("@/components/Editor"), { ssr: false }),
+    []
+  );
+
   // Fetch document data based on the documentId
   const document = useQuery(api.documents.getById, {
     documentId: params.documentId,
