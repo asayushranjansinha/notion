@@ -1,4 +1,5 @@
 // Importing necessary modules and components
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
@@ -13,16 +14,19 @@ const font = Poppins({
 function Logo() {
   // Returning the JSX for the Logo component
   return (
-    <div className="hidden md:flex items-center gap-x-2">
+    <Button
+      variant="ghost"
+      className="hidden md:flex items-center gap-x-1 py-2"
+    >
       {/* Logo Image */}
       <Image src="/logo-light.png" height="40" width="40" alt="Logo" />
 
       {/* Logo Text */}
-      <p className={cn("font-semibold text-blue-500", font.className)}>
+      <p className={cn("font-semibold text-primary dark:text-white", font.className)}>
         Note Nirvana
       </p>
-    </div>
+    </Button>
   );
 }
 
-export default Logo;  // Exporting the Logo component as the default export
+export default Logo; // Exporting the Logo component as the default export

@@ -104,7 +104,7 @@ function TrashBox() {
               <div
                 onClick={(event) => onRestore(event, document._id)}
                 role="button"
-                className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-secondary"
+                className="rounded-sm p-2 hover:bg-neutral-300 dark:hover:bg-secondary"
               >
                 <Undo className="h-4 w-4 text-muted-foreground" />
               </div>

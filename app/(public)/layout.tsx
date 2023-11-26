@@ -2,7 +2,7 @@
 const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     // Apply a dark background color to the entire layout
-    <div className="h-full dark:bg-[#1F1F1F]">{children}</div>
+    <div className="h-full">{children}</div>
   );
 };
 

@@ -1,16 +1,15 @@
 "use client";
 
+import { SignOutButton, useUser } from "@clerk/clerk-react";
 import { ChevronsLeftRight } from "lucide-react";
-import { useUser, SignOutButton } from "@clerk/clerk-react";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 
 export const UserItem = () => {
@@ -28,7 +27,7 @@ export const UserItem = () => {
               <AvatarImage src={user?.imageUrl} />
             </Avatar>
             <span className="text-start font-medium line-clamp-1">
-              {user?.fullName}&apos;s Jotion
+              {user?.fullName}&apos;s Notes
             </span>
           </div>
           <ChevronsLeftRight className="rotate-90 ml-2 text-muted-foreground h-4 w-4" />
@@ -52,7 +51,7 @@ export const UserItem = () => {
             </div>
             <div className="space-y-1">
               <p className="text-sm line-clamp-1">
-                {user?.fullName}&apos;s Jotion
+                {user?.fullName}&apos;s Notes
               </p>
             </div>
           </div>

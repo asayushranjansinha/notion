@@ -136,7 +136,7 @@ export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
               size="sm"
             >
               <Smile className="h-4 w-4 mr-2" />
-              Add icon
+              Add Icon
             </Button>
           </IconPicker>
         )}
@@ -150,7 +150,7 @@ export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
             size="sm"
           >
             <ImageIcon className="h-4 w-4 mr-2" />
-            Add cover
+            Add Cover
           </Button>
         )}
       </div>

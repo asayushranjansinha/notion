@@ -34,7 +34,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   // Returning the JSX for the MainLayout component
   return (
-    <div className="h-full w-screen flex dark:bg-[#1F1F1F] relative overflow-x-hidden">
+    <div className="h-full w-screen flex dark:bg-background relative overflow-x-hidden">
       {/* Navigation Component */}
       <Navigation />
 

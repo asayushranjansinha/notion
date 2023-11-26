@@ -5,10 +5,11 @@
 import {
   ChevronsLeft,
   MenuIcon,
+  Plus,
   PlusCircle,
   Search,
   Settings,
-  Trash
+  Trash,
 } from "lucide-react"; // Importing Lucide icons
 
 // Next.js-related imports
@@ -16,24 +17,24 @@ import { useParams, usePathname, useRouter } from "next/navigation"; // Importin
 import { ElementRef, useEffect, useRef, useState } from "react"; // Importing React hooks
 
 // Custom hooks and components
+import { useMediaQuery } from "usehooks-ts"; // Importing custom useMediaQuery hook
 import { useMutation } from "convex/react"; // Importing Convex useMutation hook
 import { toast } from "sonner"; // Importing Sonner toast
-import { useMediaQuery } from "usehooks-ts"; // Importing custom useMediaQuery hook
 
+import { cn } from "@/lib/utils"; // Importing utility functions
+import { api } from "@/convex/_generated/api"; // Importing Convex API
+import { UserItem } from "./UserItem"; // Importing internal UserItem component
+import { Item } from "./Item"; // Importing internal Item component
+import { DocumentList } from "./DocumentList"; // Importing internal DocumentList component
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"; // Importing internal Popover components
-import { api } from "@/convex/_generated/api"; // Importing Convex API
+import TrashBox from "./TrashBox"; // Importing internal TrashBox component
 import { useSearch } from "@/hooks/use-search"; // Importing custom useSearch hook
 import { useSettings } from "@/hooks/use-settings"; // Importing custom useSettings hook
-import { cn } from "@/lib/utils"; // Importing utility functions
-import { DocumentList } from "./DocumentList"; // Importing internal DocumentList component
-import { Item } from "./Item"; // Importing internal Item component
 import Navbar from "./Navbar"; // Importing internal Navbar component
-import TrashBox from "./TrashBox"; // Importing internal TrashBox component
-import { UserItem } from "./UserItem"; // Importing internal UserItem component
 
 export const Navigation = () => {
   // Custom hooks and state for handling navigation, settings, and UI elements
@@ -187,7 +188,7 @@ export const Navigation = () => {
           onClick={collapse}
           role="button"
           className={cn(
-            "h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition",
+            "h-6 w-6 text-muted-foreground rounded-sm hover:bg-neutral-300 dark:hover:bg-primary-foreground absolute top-3 right-2 opacity-0 group-hover/sidebar:opacity-100 transition",
             isMobile && "opacity-100"
           )}
         >

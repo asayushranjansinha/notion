@@ -28,9 +28,9 @@ function Navbar() {
     <div
       // Applying dynamic classNames based on scroll position and theme
       className={cn(
-        "z-50 bg-background dark:bg-[#1F1F1F] fixed top-0 flex items-center w-full p-6",
+        "bg-background z-50 fixed top-0 flex items-center w-full p-6",
         scrolled &&
-          "border-b border-gray-300 shadow-md transition ease-linear duration-200"
+          "border-b border-muted transition ease-linear duration-200"
       )}
     >
       <Logo /> {/* Rendering the Logo component */}

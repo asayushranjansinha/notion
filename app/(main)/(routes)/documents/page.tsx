@@ -48,7 +48,7 @@ function DocumentsPage() {
   return (
     <div className="h-full flex flex-col items-center justify-center space-y-4">
       {/* Empty Image */}
-      <Image src="/empty.png" alt="Empty" height="300" width="300" />
+      <Image src="/empty.png" alt="Empty" height="300" width="300" priority />
 
       {/* Welcome Message */}
       <h2 className="text-lg font-medium">
@@ -56,11 +56,11 @@ function DocumentsPage() {
       </h2>
 
       {/* Create a Note Button */}
-      <Button onClick={handleCreate}>
-        <PlusCircle className="h-4 w-4 mr-2" /> Create a note
+      <Button onClick={handleCreate} className="text-white">
+        <PlusCircle className="h-4 w-4 mr-2" /> <span>Create a note</span>
       </Button>
     </div>
   );
 }
 
-export default DocumentsPage;  // Exporting the DocumentsPage component as the default export
+export default DocumentsPage; // Exporting the DocumentsPage component as the default export

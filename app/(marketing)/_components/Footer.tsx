@@ -10,7 +10,7 @@ import { Heart } from "lucide-react"; // Importing the Heart icon from Lucid ico
 function Footer() {
   // Returning the JSX for the Footer component
   return (
-    <div className="flex items-center w-full p-6 bg-background z-50 dark:bg-[#1F1F1F]">
+    <div className="flex items-center w-full p-6 bg-background z-50 dark:bg-background">
       {/* Logo */}
       <Logo />
 

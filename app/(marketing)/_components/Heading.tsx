@@ -48,8 +48,8 @@ function Heading() {
       {/* Authenticated user section */}
       {isAuthenticated && !isLoading && (
         <Button asChild>
-          <Link href="/documents">
-            Your Nirvana Starts Here.
+          <Link href="/documents" className="text-white">
+            <span>Your Nirvana Starts Here.</span>
             <ArrowRight className="h-4 w-4 ml-2" />
           </Link>
         </Button>

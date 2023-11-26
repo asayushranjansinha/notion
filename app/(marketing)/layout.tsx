@@ -5,7 +5,7 @@ import Navbar from "./_components/Navbar";
 const MarketingLayout = ({ children }: { children: React.ReactNode }) => {
   // Returning the JSX for the MarketingLayout component
   return (
-    <div className="h-full dark:bg-[#1F1F1F]">
+    <div className="h-full dark:bg-background">
       {/* Navbar Component */}
       <Navbar />
 

@@ -55,7 +55,7 @@ function Navbar({ isCollapsed, onResetWidth }: NavbarProps) {
   // Rendering the actual Navbar component JSX
   return (
     <>
-      <nav className="bg-background dark:bg-[#1f1f1f] px-3 py-2 w-full flex items-center gap-x-4">
+      <nav className="bg-background px-3 py-2 w-full flex items-center gap-x-4">
         {isCollapsed && (
           // MenuIcon for collapsed state with onClick handler to reset width
           <MenuIcon

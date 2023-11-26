@@ -6,7 +6,6 @@ html,
 body,
 :root {
   height: 100%;
-  background-color: white;
 }
  
 
@@ -65,4 +64,44 @@ body,
   body {
     @apply bg-background text-foreground;
   }
+}
+/* For WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4a4a4a;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #333;
+}
+/* For WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3498db;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #2c3e50;
+}
+
+/* For Firefox */
+scrollbar {
+  width: 8px;
+}
+
+scrollbar-thumb {
+  background-color: #3498db;
+  border-radius: 4px;
+}
+
+scrollbar-track {
+  background-color: #2c3e50;
 }
